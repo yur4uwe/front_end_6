@@ -7,3 +7,9 @@
     height: 100%;
     flex-grow: 1;
 }
+
+.todo-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}

@@ -1,0 +1,22 @@
+button[type="submit"] {
+    background-color: #0eaa00;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0c7e00;
+}
+
+button[type="submit"]:hover>i::before {
+    color: white;
+}
+
+form {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}

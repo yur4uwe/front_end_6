@@ -4,6 +4,8 @@
     justify-content: center;
     align-items: center;
     padding: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
 }
 
 #task-list ul {
@@ -21,4 +23,10 @@
     background-color: #f9f9f9;
     width: calc(100% - 1rem);
     list-style: none;
+    margin-bottom: 5px;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: #ccc;
 }
