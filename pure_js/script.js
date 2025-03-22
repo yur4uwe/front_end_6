@@ -1,3 +1,46 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const tasks = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
+    const ul = document.getElementById('task-list');
+    ul.innerHTML = '';
+
+    if (tasks.length === 0) {
+        ul.innerText = "You don't have any active tasks";
+        return;
+    }
+
+    for (let i = 0; i < tasks.length; i++) {
+        const li = document.createElement('li');
+        li.classList.add('list-item');
+        li.appendChild(document.createTextNode(tasks[i]));
+
+        const buttons = document.createElement('div');
+        buttons.classList.add('buttons');
+
+        const deleteButton = document.createElement('button');
+        deleteButton.classList.add('button-delete');
+        deleteButton.addEventListener('click', deleteTask);
+        deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
+
+        const editButton = document.createElement('button');
+        editButton.classList.add('button-edit');
+        editButton.addEventListener('click', editTask);
+        editButton.innerHTML = '<i class="fas fa-edit"></i>';
+
+        const doneButton = document.createElement('button');
+        doneButton.classList.add('button-done');
+        doneButton.addEventListener('click', doneTask);
+        doneButton.innerHTML = '<i class="fas fa-check"></i>';
+
+        buttons.appendChild(deleteButton);
+        buttons.appendChild(editButton);
+        buttons.appendChild(doneButton);
+
+        li.appendChild(buttons);
+
+        ul.appendChild(li);
+    }
+});
+
 const addTask = () => {
     const task = document.getElementById('task').value;
     if (task === '') {
