@@ -1,0 +1,149 @@
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    font-size: 2rem;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header,
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+    position: fixed;
+}
+
+header {
+    top: 0;
+}
+
+footer {
+    bottom: 0;
+}
+
+#main-content {
+    padding: calc(3rem + 20px) 0;
+    max-width: 70vw;
+}
+
+#task {
+    font-size: 2.5rem;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin: 20px 10px 0 0;
+    flex: 1;
+    width: calc(100% - 40px);
+}
+
+#add {
+    font-size: 2.5rem;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: rgb(45, 214, 23);
+    border: none;
+    border-radius: 10px;
+    height: auto;
+}
+
+#add-task {
+    width: 100%;
+    display: flex;
+}
+
+#task-list,
+#completed-task-list {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+    max-height: 30vh;
+    list-style: none;
+    color: rgba(0, 0, 0, 0.2);
+}
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+    margin: 10px 0;
+    width: calc(100% - 40px);
+    color: #333;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buttons button {
+    font-size: 1.5rem;
+    padding: 5px 10px;
+    margin: 0px 5px;
+    border: none;
+    cursor: pointer;
+    box-sizing: content-box;
+    position: relative;
+}
+
+.buttons button::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0;
+    border-bottom: 4px solid transparent;
+    transition: border-color 0.3s;
+}
+
+.buttons button:hover::after {
+    border-bottom-color: #333;
+}
+
+@media (max-width: 768px) {
+    body {
+        justify-content: normal;
+    }
+
+    #main-content {
+        max-width: 90vw;
+    }
+
+    #task {
+        font-size: 2rem;
+    }
+
+    #add {
+        font-size: 2rem;
+    }
+
+    #task-list,
+    #completed-task-list {
+        max-height: 20vh;
+    }
+
+    .list-item {
+        padding: 10px;
+    }
+
+    .buttons button {
+        font-size: 1.2rem;
+    }
+}
