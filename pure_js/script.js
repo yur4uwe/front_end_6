@@ -58,7 +58,7 @@ const addTask = () => {
     li.appendChild(document.createTextNode(task));
 
     const tasks = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
-    tasks.push(task);
+    tasks.push({ task, state: 'active' });
     localStorage.setItem('tasks', JSON.stringify(tasks));
 
     const buttons = document.createElement('div');
@@ -100,6 +100,12 @@ const deleteTask = (e) => {
         }
     }
     item.remove();
+
+    const tasks = JSON.parse(localStorage.getItem('tasks'));
+    const task = tasks.find(task => task.task === item.firstChild.textContent);
+    const index = tasks.indexOf(task);
+    tasks.splice(index, 1);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
 };
 
 const editTask = (e) => {
@@ -109,6 +115,11 @@ const editTask = (e) => {
     if (newTask !== null && newTask !== '') {
         item.firstChild.textContent = newTask;
     }
+
+    const tasks = JSON.parse(localStorage.getItem('tasks'));
+    const task = tasks.find(task => task.task === taskText);
+    task.task = newTask;
+    localStorage.setItem('tasks', JSON.stringify(tasks));
 };
 
 const doneTask = (e) => {
@@ -124,4 +135,9 @@ const doneTask = (e) => {
     if (document.getElementById('task-list').querySelectorAll('li').length === 0) {
         document.getElementById('task-list').innerText = "You don't have any active tasks";
     }
+
+    const tasks = JSON.parse(localStorage.getItem('tasks'));
+    const task = tasks.find(task => task.task === item.firstChild.textContent);
+    task.state = 'completed';
+    localStorage.setItem('tasks', JSON.stringify(tasks));
 };
