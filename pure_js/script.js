@@ -1,17 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
+    /**
+     * @type {Array<{task: string, state: string}>} tasks
+     */
     const tasks = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
     const ul = document.getElementById('task-list');
+    const completedUl = document.getElementById('completed-task-list');
     ul.innerHTML = '';
-
-    if (tasks.length === 0) {
-        ul.innerText = "You don't have any active tasks";
-        return;
-    }
+    completedUl.innerHTML = '';
 
     for (let i = 0; i < tasks.length; i++) {
         const li = document.createElement('li');
         li.classList.add('list-item');
-        li.appendChild(document.createTextNode(tasks[i]));
+        li.appendChild(document.createTextNode(tasks[i].task));
 
         const buttons = document.createElement('div');
         buttons.classList.add('buttons');
@@ -32,12 +32,25 @@ document.addEventListener('DOMContentLoaded', () => {
         doneButton.innerHTML = '<i class="fas fa-check"></i>';
 
         buttons.appendChild(deleteButton);
-        buttons.appendChild(editButton);
-        buttons.appendChild(doneButton);
+        if (tasks[i].state === 'active') {
+            buttons.appendChild(editButton);
+            buttons.appendChild(doneButton);
+        }
 
         li.appendChild(buttons);
 
-        ul.appendChild(li);
+        if (tasks[i].state === 'completed') {
+            completedUl.appendChild(li);
+        } else {
+            ul.appendChild(li);
+        }
+    }
+
+    if (ul.querySelectorAll('li').length === 0) {
+        ul.innerText = "You don't have any active tasks";
+    } 
+    if (completedUl.querySelectorAll('li').length === 0) {
+        completedUl.innerText = "You don't have any completed tasks";
     }
 });
 
